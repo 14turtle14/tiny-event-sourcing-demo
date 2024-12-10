@@ -83,7 +83,7 @@ fun ProjectAggregateState.memberAssignedToTask(userId: UUID, taskId: UUID): Memb
 
     this.tasks.forEach { element ->
         if (element.value.id == taskId){
-            taskNotExist = true;
+            taskNotExist = false;
         }
     }
 

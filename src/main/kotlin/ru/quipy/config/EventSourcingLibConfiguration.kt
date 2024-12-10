@@ -72,7 +72,7 @@ class EventSourcingLibConfiguration {
         subscriptionsManager.subscribe<UserAggregate>(userViewService)
 
         // Demonstrates how you can set up the listeners to the event stream
-        eventStreamManager.maintenance {
+        /*eventStreamManager.maintenance {
             onRecordHandledSuccessfully { streamName, eventName ->
                 logger.info("Stream $streamName successfully processed record of $eventName")
             }
@@ -80,7 +80,7 @@ class EventSourcingLibConfiguration {
             onBatchRead { streamName, batchSize ->
                 logger.info("Stream $streamName read batch size: $batchSize")
             }
-        }
+        }*/
     }
 
 }

@@ -8,9 +8,7 @@ import java.util.*
 // Service's business logic
 class ProjectAggregateState : AggregateState<UUID, ProjectAggregate> {
     private lateinit var projectId: UUID
-    private var defaultStatus = StatusEntity(UUID.randomUUID(), projectId, null, null)
-    var createdAt: Long = System.currentTimeMillis()
-    var updatedAt: Long = System.currentTimeMillis()
+    private lateinit var defaultStatus: StatusEntity
     var projectMemberIds = mutableListOf<UUID>()
     var projectStatus = mutableMapOf<UUID, StatusEntity>()
     var tasks = mutableMapOf<UUID, TaskEntity>()
@@ -24,8 +22,8 @@ class ProjectAggregateState : AggregateState<UUID, ProjectAggregate> {
     fun projectCreatedApply(event: ProjectCreatedEvent) {
         projectId = event.projectId
         projectTitle = event.title
+        defaultStatus = StatusEntity(UUID.randomUUID(), projectId, null, null)
         creatorId = event.creatorId
-        updatedAt = createdAt
         projectMemberIds.add(creatorId)
     }
 
