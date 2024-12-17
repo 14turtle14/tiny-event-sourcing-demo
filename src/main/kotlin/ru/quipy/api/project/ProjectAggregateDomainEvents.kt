@@ -1,6 +1,7 @@
 package ru.quipy.api.project
 
 import ru.quipy.aggregate.project.ProjectAggregate
+import ru.quipy.aggregate.project.StatusEntity
 import ru.quipy.core.annotations.DomainEvent
 import ru.quipy.domain.Event
 import java.util.*
@@ -21,8 +22,9 @@ const val STATUS_DELETED_EVENT = "STATUS_DELETED_EVENT"
 @DomainEvent(name = PROJECT_CREATED_EVENT)
 class ProjectCreatedEvent(
     val projectId: UUID,
-    val title: String,
     val creatorId: UUID,
+    val title: String,
+    val defaultStatus: StatusEntity,
     createdAt: Long = System.currentTimeMillis(),
 ) : Event<ProjectAggregate>(
     name = PROJECT_CREATED_EVENT,
@@ -33,7 +35,7 @@ class ProjectCreatedEvent(
 class TaskCreatedEvent(
     val projectId: UUID,
     val taskId: UUID,
-    val taskName: String,
+    val title: String,
     createdAt: Long = System.currentTimeMillis(),
 ) : Event<ProjectAggregate>(
     name = TASK_CREATED_EVENT,
